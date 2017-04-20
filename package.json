@@ -4,8 +4,20 @@
   "description": "Edinomishlennic web-site",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node main.js"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Andrey Kernichnyy",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.3.0",
+    "body-parser": "^1.17.1",
+    "crypto-js": "^3.1.9-1",
+    "express": "^4.15.2",
+    "jwt-simple": "^0.5.1",
+    "mongoose": "^4.9.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://github.com/snowstroom/edinomishlennic.git"
+  }
 }
