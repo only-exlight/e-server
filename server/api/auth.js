@@ -1,13 +1,26 @@
 const router = require('express').Router();
 let User = require('../models/user').User,
-    Token = require('../models/token.js').Token,
+    Token = require('../models/token').Token,
+    Profile = require('../models/profile').Profile,
     async = require('async');
 
 router.post('/registration', (req, res) => {
     let user = new User(req.body);
-    user.save((err, user, affected) => {
-        res.end();
-    });
+    async.series([
+        (cb)=>{
+            user.save((err, user, affected) => cb());
+        },
+        (cb)=>{
+            let emptyProfile = new Profile({email:req.body.email})
+            emptyProfile.save(err=>cb())
+        }],
+        (err,result)=>{
+            if (err){
+                res.end(JSON.stringify({done:false}));
+            } else {
+                res.end(JSON.stringify({done:true}));
+            }
+    })
 })
 
 router.post('/login', (req, res) => {
@@ -21,12 +34,10 @@ router.post('/login', (req, res) => {
                     res.end(JSON.stringify(token));
                 });
             } else {
-                res.status(403);
-                res.end();
+                res.end(JSON.stringify({done:false}));
             };
         } else {
-            res.status(403);
-            res.end();
+            res.end(JSON.stringify({done:false}));
         }
     })
 
