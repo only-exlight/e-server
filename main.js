@@ -21,6 +21,7 @@ app.get('*', (req, res) => {
 
 app.use('/auth', require('./server/api/auth'));
 app.use('/api', require('./server/api/profile'));
+app.use('/api',require('./server/api/project'));
 
 app.listen(8000,() => {
     console.log('Server started on port ' + 8000);

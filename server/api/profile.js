@@ -8,11 +8,11 @@ router.post('/get-profile',(req,res)=>{
 })
 
 router.post('/update-profile',(req,res)=>{
-    Profile.update(req.body,req.body,(err)=>{
+    Profile.update({email:req.body.email},req.body,(err)=>{
         if (err){
-            res.end({done:false});
+            res.end(JSON.stringify({done:false}));
         } else {
-            res.end({done:true});
+            res.end(JSON.stringify({done:true}));
         }
     })
 })
