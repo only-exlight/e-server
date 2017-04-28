@@ -9,4 +9,4 @@ let schema = new Schema({
     },
 });
 
-exports.Project = mongoose.model('Ivent',schema);
+exports.Ivent = mongoose.model('Ivent',schema);

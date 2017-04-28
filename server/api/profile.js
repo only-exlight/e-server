@@ -1,5 +1,6 @@
 const router = require('express').Router();
-let Profile = require('../models/profile').Profile;
+let Profile = require('../models/profile').Profile,
+    Interest = require('../models/interest').Interest;
 
 router.post('/get-profile',(req,res)=>{
     Profile.find(req.body,(err,doc)=>{
