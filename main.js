@@ -28,6 +28,8 @@ app.use('/auth', require('./server/api/auth'));
 app.use('/api', require('./server/api/profile'));
 app.use('/api', require('./server/api/project'));
 app.use('/api', require('./server/api/ivent'));
+app.use('/api', require('./server/api/chats'));
+app.use('/api', require('./server/api/search'));
 
 const wss = new WebSocket.Server({ server });
 let Clients = [];
@@ -37,13 +39,10 @@ wss.on('connection', (ws) => {
   Clients.push(ws);
   const location = url.parse(ws.upgradeReq.url, true);
 
-
   ws.on('message', function incoming(message) {
     console.log('received: %s', message);
     ws.send(JSON.stringify({author : "sadsad", message:"kkkkk"}));
   });
-
-  
 });
 
 server.listen(8000,() => {
