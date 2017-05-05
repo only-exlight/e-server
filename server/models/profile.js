@@ -7,16 +7,44 @@ let schema = new Schema({
         unique: true,
         required: true
     },
-    name:String,
-    surname:String,
-    patronymic: String,
+    name: {
+        default:"",
+        type: String
+    },
+    surname: {
+        default:"",
+        type: String
+    },
+    patronymic: {
+        default:"",
+        type: String
+    },
     birthday: Date,
-    country:String,
-    city: String,
+    country: {
+        default:"",
+        type: String
+    },
+    city: {
+        default:"",
+        type: String
+    },
+    phone: {
+        default:"",
+        type: String
+    },
     interests: Array,
-    gender: Boolean,
-    about: String,
-    avatar:String
+    gender: {
+        default: true,
+        type: Boolean
+    },
+    about: {
+        default:"",
+        type: String
+    },
+    avatar:{
+        default:"auto.jpg",
+        type: String
+    }
 });
 
 exports.Profile = mongoose.model('Profile',schema);
