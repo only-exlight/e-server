@@ -27,6 +27,7 @@ app.use('/api', require('./server/api/project'));
 app.use('/api', require('./server/api/ivent'));
 app.use('/api', require('./server/api/chats'));
 app.use('/api', require('./server/api/search'));
+app.use('/api', require('./server/api/incident'));
 
 const wss = new WebSocket.Server({
     server

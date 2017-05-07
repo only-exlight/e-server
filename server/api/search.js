@@ -4,21 +4,21 @@ let Profile = require('../models/profile').Profile,
     Group = require('../models/group').Group;
 
 router.post('/search-profiles', (req,res)=>{
-    Profile.find({},(err,docs)=>{
+    Profile.find({interests:{$in:[req.body]}},(err,docs)=>{
         if (err) res.end(JSON.stringify({done:false}))
         else res.end(JSON.stringify(docs));
     })
 })
 
 router.post('/search-groups', (req,res)=>{
-    Group.find({},(err,docs)=>{
+    Group.find({interests:{$in:[req.body]}},(err,docs)=>{
         if (err) res.end(JSON.stringify({done:false}))
         else res.end(JSON.stringify(docs));
     })
 })
 
 router.post('/search-projects', (req,res)=>{
-    Project.find({},(err,docs)=>{
+    Project.find({interests:{$in:[req.body]}},(err,docs)=>{
         if (err) res.end(JSON.stringify({done:false}))
         else res.end(JSON.stringify(docs));
     })

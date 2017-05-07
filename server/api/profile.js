@@ -13,6 +13,13 @@ router.post('/get-profile', (req, res) => {
     })
 })
 
+router.post('/get-profile-all', (req,res)=>{
+    Profile.find({},(err,docs)=>{
+        if (err) res.end(JSON.stringify({done: false}))
+        else res.end(JSON.stringify(docs));
+    })
+})
+
 router.post('/avatar-load', (req, res) => {
     const FOOLDER = './storage/';
     let form = new multiparty.Form();

@@ -2,13 +2,21 @@ let mongoose = require('../libs/mongoose'),
     Schema = mongoose.Schema;
 
 let schema = new Schema({
-    title: String,
+    title: {
+        type: String,
+        unique: true,
+        required: true
+    },
     initiator: {
         type: String,
         required: true
     },
+    avatar:{
+        type: String,
+        default: "auto-project.jpg"
+    },
     desciption: String,
-    intereses: Array,
+    interests: Array,
     participant: Array,
     target: String
 });

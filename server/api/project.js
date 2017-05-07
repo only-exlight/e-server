@@ -35,4 +35,11 @@ router.post('/projects-get',(req,res)=>{
     })
 })
 
+router.post('/projects-update',(req,res)=>{
+    Project.update(req.body.title,req.body, err=>{
+        if (err) res.end(JSON.stringify({done:false}));
+        else res.end(JSON.stringify({done:true}));
+    })
+})
+
 module.exports = router;
