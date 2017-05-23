@@ -44,7 +44,20 @@ let schema = new Schema({
     avatar:{
         default:"auto.jpg",
         type: String
-    }
+    },
+    contacts: [
+        {
+            email : {
+                type: String,
+                require: true
+            },
+            status : {
+                type: Boolean,
+                require: true,
+                default: false
+            }
+        }
+    ]
 });
 
 exports.Profile = mongoose.model('Profile',schema);

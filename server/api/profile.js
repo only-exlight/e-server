@@ -2,7 +2,12 @@ const router = require('express').Router();
 let Profile = require('../models/profile').Profile,
     Interest = require('../models/interest').Interest,
     multiparty = require('multiparty'),
-    fs = require('fs');
+    fs = require('fs'),
+    jwt = require('jwt-simple'),
+    secret = 'mysecretword',
+    async = require('async'),
+    EventEmitter = require('events');
+const addToContacts = new EventEmitter();
 
 router.post('/get-profile', (req, res) => {
     Profile.find(req.body, (err, doc) => {
@@ -103,4 +108,32 @@ router.post('/update-profile', (req, res) => {
     })
 })
 
+router.post('/profile-add-to-contacts', (req,res)=>{
+    async.series([
+        cb=>{
+            Profile.update(req.body,{$push: {contacts: {
+                email: jwt.decode(req.headers.token,secret).email,
+                status: false
+            }}},err=>{
+                cb(err);
+            })
+        },
+        cb=> {
+            Profile.update({email: jwt.decode(req.headers.token,secret).email},{$push: {contacts: {
+                email: req.body.email,
+                status: false
+            }}},err=>{
+                cb(err);
+            })
+        }
+    ],err=>{
+        if (err) res.end(JSON.stringify({done:true}));
+        else {
+            res.end(JSON.stringify({done:true}))
+            addToContacts.emit('addToContacts');
+        }
+    })
+})
+
 module.exports = router;
+module.exports.addToContacts = addToContacts;
