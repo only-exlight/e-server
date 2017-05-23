@@ -1,2 +1,4 @@
 /node_modules
 /storage/*.*
+/client/dist
+/client/node_modules
