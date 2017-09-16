@@ -2,7 +2,27 @@ const router = require('express').Router();
 let User = require('../models/user').User,
     Token = require('../models/token').Token,
     Profile = require('../models/profile').Profile,
-    async = require('async');
+    async = require('async'),
+    nodemailer = require('nodemailer');
+
+var fromEmailAddress = 'yoyo100295@hotmail.com'
+var toEmailAddress = 'kerpith@gmail.com'
+
+let transporter = nodemailer.createTransport({
+    series: 'hotmail',
+    auth: {
+        user: fromEmailAddress,
+        password: '12n*qx10//'
+    }
+})
+
+let mailOptions = {
+    from: fromEmailAddress, // sender address
+    to: toEmailAddress, // list of receivers
+    subject: 'Hello ✔', // Subject line
+    text: 'Hello world ?', // plain text body
+    html: '<b>Hello world ?</b>' // html body
+};
 
 router.post('/registration', (req, res) => {
     let user = new User(req.body);
@@ -13,6 +33,14 @@ router.post('/registration', (req, res) => {
         (cb)=>{
             let emptyProfile = new Profile({email:req.body.email})
             emptyProfile.save(err=>cb())
+        },
+        (cb)=>{
+            transporter.sendMail(mailOptions,(err,inf)=>{
+                if (err){
+                    console.log(err);
+                    cb();
+                } else console.log(inf);
+            })
         }],
         (err,result)=>{
             if (err){

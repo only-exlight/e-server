@@ -1,0 +1,37 @@
+{
+    "general": {
+        "name": "Andrey",
+        "surname": "Andreev",
+        "patronymic": "Andreevich",
+        "gender": "man",
+        "birthday": {
+            "day": 10,
+            "mounth": 2,
+            "year": 1995
+        },
+        "about": "My info"
+    },
+    "contacts": {
+        "state": "Kazakhstan",
+        "city": "Karaganda",
+        "phone": "+77471544148",
+        "skype": "kiss_liy",
+        "site": "snow-storm.ru",
+        "mail": "yoyo100295@hotmail.com"
+    },
+    "education": [{
+        "type": "higth",
+        "institution": "KarSU",
+        "specialty": "Computer science"
+    }],
+    "skills": ["Programming on JavaScript","HTML"],
+    "interests": ["Программирование","Веб"],
+    "settings": {
+        "general": {
+
+        },
+        "notification": {
+            
+        }
+    }
+}
